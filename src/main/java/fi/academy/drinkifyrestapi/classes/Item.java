@@ -18,11 +18,23 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String description, String category, boolean available) {
+
+    public Item(String name, String category, String description, boolean available) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.available = available;
+    }
+
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Item(String name, String description, boolean available) {
         this.name = name;
         this.description = description;
         this.available = available;
-        this.category = category;
     }
 
     public String getId() {
