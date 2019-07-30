@@ -26,6 +26,16 @@ public class DrinkifyController {
         return drinkrepo.findAll();
     }
 
+    @GetMapping("/virgins")
+    public List<Drink> getVirgins() {
+        return drinkrepo.findAllByVirginTrue();
+    }
+
+    @GetMapping("/byName")
+    public List<Drink> getByName() {
+        return drinkrepo.findAllByName("GT");
+    }
+
     @PostMapping("")
     public Drink addDrink(@RequestBody Drink newDrink) {
         Drink drink = new Drink(newDrink.getName(), newDrink.getRecipe(), newDrink.getBooze(), newDrink.isVirgin());
@@ -37,3 +47,5 @@ public class DrinkifyController {
 
 
 }
+
+
