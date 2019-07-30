@@ -14,7 +14,7 @@ public class MongoConfig extends AbstractMongoConfiguration{
     @Override
     protected String getDatabaseName() {
         // name of the database in mongo
-        return "drinkify";
+        return "toolshed";
     }
 
     @Bean
