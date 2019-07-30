@@ -1,12 +1,8 @@
 package fi.academy.drinkifyrestapi;
 
-import fi.academy.drinkifyrestapi.classes.Alcohol;
 import fi.academy.drinkifyrestapi.classes.Drink;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,10 +24,17 @@ public class DrinkifyController {
 
     @PostMapping("")
     public Drink addDrink(@RequestBody Drink newDrink) {
-        Drink drink = new Drink(newDrink.getName(), newDrink.getRecipe(), newDrink.getBooze(), newDrink.isVirgin());
+        Drink drink = new Drink(newDrink.getName().trim(), newDrink.getRecipe(), newDrink.isVirgin());
         drinkrepo.save(drink);
         return drink;
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteDrink(@PathVariable String id) {
+        boolean result = drinkrepo.existsById(id);
+        return"( \"deleted\" : "+ (result? "true": "false") + " }";
+    }
+
 
 
 

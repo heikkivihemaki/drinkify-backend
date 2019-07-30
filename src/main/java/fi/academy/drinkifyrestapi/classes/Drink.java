@@ -16,10 +16,9 @@ public class Drink {
 
     public Drink (){}
 
-    public Drink(String name, String recipe, String booze, boolean virgin) {
+    public Drink(String name, String recipe, boolean virgin) {
         this.name = name;
         this.recipe = recipe;
-        this.booze = booze;
         this.virgin = virgin;
     }
 
