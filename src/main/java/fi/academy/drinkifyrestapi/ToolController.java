@@ -6,12 +6,14 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/toolshed")
 public class ToolController {
 
     @Autowired ItemRepository itemrepo;
+    @Autowired UserRepository userrepo;
 
     @GetMapping("/healthcheck")
     public String healthcheck(){
@@ -29,12 +31,20 @@ public class ToolController {
     @GetMapping("/availablecategory") public List<Item> getAvailableAndByCategory(@RequestParam String category) { return itemrepo.findAllByCategoryAndAvailableTrue(category);}
 
     @PostMapping("")
-    public Item addItem(@RequestBody Item newItem) {
-        User u = new User ("Erkki Esimerkki", "erkki@esimerkki.fi");
-        u.setId(String.valueOf(ObjectId.get()));
-        Item item = new Item(newItem.getName().trim(), newItem.getDescription(),newItem.getCategory(), newItem.isAvailable());
-        item.setOwner(u);
+    public Item addTestItem(@RequestBody Item newItem) {
+        Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
         itemrepo.save(item);
+        return item;
+    }
+
+    @PostMapping("lisaamyosomistajalle")
+    public Item addItem(@RequestBody Item newItem) {
+        Optional<User> u = userrepo.findById("5d40478e11674643f09a6690");
+        User user = u.get();
+        Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
+        item.setOwner(user);
+        itemrepo.save(item);
+        user.addItemToItemsList(item);
         return item;
     }
 

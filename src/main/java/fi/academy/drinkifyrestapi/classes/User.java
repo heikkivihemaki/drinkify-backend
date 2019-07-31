@@ -1,9 +1,13 @@
 package fi.academy.drinkifyrestapi.classes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection= "users")
@@ -13,6 +17,7 @@ public class User {
     private String id;
     private String name;
     private String email;
+    @DBRef
     private List<Item> items;
 
     public User(){}
@@ -20,6 +25,7 @@ public class User {
     public User(String name, String email) {
         this.name = name;
         this.email = email;
+        this.items = new ArrayList<>();
     }
 
     public String getId() {
@@ -52,6 +58,10 @@ public class User {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public boolean addItemToItemsList(Item item) {
+            return this.items.add(item);
     }
 
     @Override

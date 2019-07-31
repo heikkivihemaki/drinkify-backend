@@ -7,9 +7,9 @@ import java.util.List;
 
 
 public interface ItemRepository extends MongoRepository<Item, String> {
-    public List<Item> findAllByName(String name);
-    public List<Item> findAllByAvailableTrue();
-    public List<Item> findAllByCategory(String category);
+    List<Item> findAllByName(String name);
+    List<Item> findAllByAvailableTrue();
+    List<Item> findAllByCategory(String category);
 
-    public List<Item> findAllByCategoryAndAvailableTrue(String category);
+    List<Item> findAllByCategoryAndAvailableTrue(String category);
 }
