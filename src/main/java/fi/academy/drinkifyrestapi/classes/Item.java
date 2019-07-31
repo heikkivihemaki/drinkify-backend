@@ -16,6 +16,7 @@ public class Item {
     private String category;
     private String description;
     private boolean available;
+    private Photo photo;
     public User owner;
 
     public Item() {
@@ -90,6 +91,14 @@ public class Item {
         this.category = category;
     }
 
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -98,6 +107,7 @@ public class Item {
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 ", available=" + available +
+                ", photo=" + photo +
                 ", owner=" + owner +
                 '}';
     }

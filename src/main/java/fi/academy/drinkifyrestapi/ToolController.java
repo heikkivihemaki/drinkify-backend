@@ -1,6 +1,7 @@
 package fi.academy.drinkifyrestapi;
 
 import fi.academy.drinkifyrestapi.classes.Item;
+import fi.academy.drinkifyrestapi.classes.Photo;
 import fi.academy.drinkifyrestapi.classes.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class ToolController {
 
     @Autowired ItemRepository itemrepo;
     @Autowired UserRepository userrepo;
+    @Autowired PhotoRepository photorepo;
 
     @GetMapping("/healthcheck")
     public String healthcheck(){
@@ -34,8 +36,11 @@ public class ToolController {
     public Item addTestItem(@RequestBody Item newItem) {
         Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
         User user = u.get();
+        Optional<Photo> optPhoto = photorepo.findById("valokuvanid");
+        Photo photo = optPhoto.get();
         Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
         item.setOwner(user);
+        item.setPhoto(photo);
         itemrepo.save(item);
         return item;
     }
