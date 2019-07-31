@@ -19,7 +19,9 @@ public class Item {
     }
 
 
-    public Item(String name,  String description, String category, boolean available) {
+
+    public Item(String name, String description, String category, boolean available) {
+
         this.name = name;
         this.category = category;
         this.description = description;
