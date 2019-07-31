@@ -1,6 +1,9 @@
 package fi.academy.drinkifyrestapi.classes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -10,10 +13,10 @@ public class Item {
     @Id
     private String id;
     private String name;
-    private User owner;
     private String category;
     private String description;
     private boolean available;
+    public User owner;
 
     public Item() {
     }
@@ -92,10 +95,10 @@ public class Item {
         return "Item{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", owner=" + owner +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 ", available=" + available +
+                ", owner=" + owner +
                 '}';
     }
 }

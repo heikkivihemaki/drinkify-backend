@@ -32,19 +32,11 @@ public class ToolController {
 
     @PostMapping("")
     public Item addTestItem(@RequestBody Item newItem) {
-        Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
-        itemrepo.save(item);
-        return item;
-    }
-
-    @PostMapping("lisaamyosomistajalle")
-    public Item addItem(@RequestBody Item newItem) {
-        Optional<User> u = userrepo.findById("5d40478e11674643f09a6690");
+        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
         User user = u.get();
         Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
         item.setOwner(user);
         itemrepo.save(item);
-        user.addItemToItemsList(item);
         return item;
     }
 
@@ -54,10 +46,6 @@ public class ToolController {
         itemrepo.deleteById(id);
         return"( \"deleted\" : "+ (result? "true": "false") + " }";
     }
-
-
-
-
 
 
 }
