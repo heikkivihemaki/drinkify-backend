@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/toolshed")
@@ -34,13 +34,13 @@ public class ToolController {
 
     @PostMapping("")
     public Item addTestItem(@RequestBody Item newItem) {
-        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
-        User user = u.get();
-        Optional<Photo> optPhoto = photorepo.findById("valokuvanid");
-        Photo photo = optPhoto.get();
+//        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
+//        User user = u.get();
+//        Optional<Photo> optPhoto = photorepo.findById("valokuvanid");
+//        Photo photo = optPhoto.get();
         Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
-        item.setOwner(user);
-        item.setPhoto(photo);
+//        item.setOwner(user);
+//        item.setPhoto(photo);
         itemrepo.save(item);
         return item;
     }
