@@ -34,13 +34,17 @@ public class ToolController {
 
     @PostMapping("")
     public Item addTestItem(@RequestBody Item newItem) {
-//        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
-//        User user = u.get();
-//        Optional<Photo> optPhoto = photorepo.findById("valokuvanid");
-//        Photo photo = optPhoto.get();
-        Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.isAvailable());
-//        item.setOwner(user);
-//        item.setPhoto(photo);
+
+        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
+        User user = u.get();
+        //Photo p = newItem.getPhoto();
+        Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.getPhoto());
+        if (item.getCategory()==null || item.getCategory()=="") {
+            item.setCategory("Muu");
+        }
+        item.setOwner(user);
+        //item.setPhoto(p);
+
         itemrepo.save(item);
         return item;
     }
