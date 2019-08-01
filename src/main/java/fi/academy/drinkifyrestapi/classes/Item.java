@@ -8,6 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+
+/**
+ * Luodaan Mongoon Items-collection.
+ */
 @Document(collection = "items")
 public class Item {
     @Id

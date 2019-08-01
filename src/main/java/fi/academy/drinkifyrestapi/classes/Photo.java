@@ -4,6 +4,10 @@ import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ *Tällä luotaisiin uusi valokuva, joka laitettaisiin MongoDB:hen.
+ * Viittaus id:hen (tai kuva upoetettuna) Item -luokassa
+ */
 @Document(collection = "photos")
 public class    Photo {
     @Id

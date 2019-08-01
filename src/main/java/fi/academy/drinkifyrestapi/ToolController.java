@@ -11,6 +11,11 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Toolshed! Tällä hallitaan pyyntöjä Item -collectioniin. Mukana myös UserRepository ja PhotoRepository,
+ * jotta päästäisiin yhdistelemään hakuja, (esim. tavaran omistajan hakeminen)
+ */
+
 @RestController
 @RequestMapping("/api/toolshed")
 public class ToolController {
@@ -24,10 +29,23 @@ public class ToolController {
         return "Hello world!";
     }
 
+    /**
+     * hakee kaikki
+     * @return palaittaa UserListin.
+     */
     @GetMapping("") public List<Item> getItems(){ return itemrepo.findAll(); }
 
+    /**
+     * Hakee vapaina olevat tavarata
+     * @return palauttaa OptionalItemin
+     */
     @GetMapping("/available") public List<Item> getAvailable() { return itemrepo.findAllByAvailableTrue(); }
 
+    /**
+     *
+     * @param haku
+     * @return
+     */
     @GetMapping("/byCategory") public List<Item> getByCategory(@RequestParam String haku) { return itemrepo.findAllByCategory(haku); }
 
     @GetMapping("/byName") public List<Item> getByName() { return itemrepo.findAllByName("GT"); }
@@ -35,9 +53,9 @@ public class ToolController {
     @GetMapping("/availablecategory") public List<Item> getAvailableAndByCategory(@RequestParam String category) { return itemrepo.findAllByCategoryAndAvailableTrue(category);}
 
     @PostMapping("")
-    public Item addTestItem(@RequestBody Item newItem) {
+    public Item addTestItem(@RequestBody Item newItem, String userId) {
 
-        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
+        Optional<User> u = userrepo.findById(userId); // Tässä vaiheessa tähän pitää copypasteta userin id!
         User user = u.get();
         //Photo p = newItem.getPhoto();
         Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.getPhoto());

@@ -3,6 +3,9 @@ package fi.academy.drinkifyrestapi.classes;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Käyttäjä. Viittaus Id:hen item-luokassa.
+ */
 @Document(collection = "users")
 public class User {
 
