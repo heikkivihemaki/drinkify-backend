@@ -3,6 +3,7 @@ package fi.academy.drinkifyrestapi;
 
 import fi.academy.drinkifyrestapi.classes.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,13 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable String id) {
         return userrepo.findById(id);
+
+    }
+
+    @GetMapping("/api/user/get/{email}")
+    public User getByEmail(@RequestBody User user, @PathVariable String email) {
+        return userrepo.findByEmail(email);
+
 
     }
 }
