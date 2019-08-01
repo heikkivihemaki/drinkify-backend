@@ -4,7 +4,9 @@ package fi.academy.drinkifyrestapi;
 import fi.academy.drinkifyrestapi.classes.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends MongoRepository<User, String> {
+import java.util.Optional;
 
-    User findByEmail(String email);
+public interface UserRepository extends MongoRepository<User, String> {
+    Optional<User> findUserByEmail(String email);
+
 }
