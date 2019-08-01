@@ -33,9 +33,9 @@ public class UserController {
 
     }
 
-    @GetMapping("/api/user/get/{email}")
-    public User getByEmail(@RequestBody User user, @PathVariable String email) {
-        return userrepo.findByEmail(email);
+    @GetMapping("/getbyemail/{email}")
+    public Optional<User> getByEmail(@PathVariable String email) {
+        return userrepo.findUserByEmail(email);
 
 
     }
