@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/toolshed")
@@ -36,6 +36,7 @@ public class ToolController {
 
     @PostMapping("")
     public Item addTestItem(@RequestBody Item newItem) {
+
         Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
         User user = u.get();
         //Photo p = newItem.getPhoto();
@@ -45,6 +46,7 @@ public class ToolController {
         }
         item.setOwner(user);
         //item.setPhoto(p);
+
         itemrepo.save(item);
         return item;
     }
