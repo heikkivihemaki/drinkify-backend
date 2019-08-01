@@ -58,10 +58,23 @@ public class ToolController {
         return"( \"deleted\" : "+ (result? "true": "false") + " }";
     }
 
-//    @PutMapping("/{id}")
-//    public Item changeAvailabilty(@PathVariable String id, S) {
-//
-//    }
+    @PutMapping("/varaus/{id}")
+    public Optional<Item> changeAvailabilty(@PathVariable String id) {
+        Optional<Item> optionalItem = itemrepo.findById(id);
+        if (optionalItem.isPresent()) {
+            Item item = optionalItem.get();
+            if (item.isAvailable()) {
+                item.setAvailable(false);
+            }
+            else {
+                item.setAvailable(true);
+            }
+            itemrepo.save(item);
+        }
+        return optionalItem;
+
+
+    }
 
 
 
