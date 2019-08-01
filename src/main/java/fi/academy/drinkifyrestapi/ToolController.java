@@ -37,7 +37,8 @@ public class ToolController {
     @PostMapping("")
     public Item addTestItem(@RequestBody Item newItem) {
 
-        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
+//        Optional<User> u = userrepo.findById("5d416b6a11674638dc27dd34"); // Tässä vaiheessa tähän pitää copypasteta userin id!
+        Optional<User> u = userrepo.findById(newItem.getOwner().getId());
         User user = u.get();
         //Photo p = newItem.getPhoto();
         Item item = new Item(newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.getPhoto());
