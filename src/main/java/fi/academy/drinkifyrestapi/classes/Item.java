@@ -24,12 +24,13 @@ public class Item {
 
 
 
-    public Item(String name, String description, String category, boolean available) {
+    public Item(String name, String description, String category, Photo photo) {
 
         this.name = name;
         this.category = category;
         this.description = description;
-        this.available = available;
+        this.available = true;
+        this.photo = photo;
     }
 
     public Item(String name, String description) {
