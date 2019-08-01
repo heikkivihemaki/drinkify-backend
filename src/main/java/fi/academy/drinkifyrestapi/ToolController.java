@@ -6,8 +6,10 @@ import fi.academy.drinkifyrestapi.classes.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.nio.file.Path;
 import java.util.List;
-//import java.util.Optional;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/toolshed")
@@ -55,6 +57,13 @@ public class ToolController {
         itemrepo.deleteById(id);
         return"( \"deleted\" : "+ (result? "true": "false") + " }";
     }
+
+//    @PutMapping("/{id}")
+//    public Item changeAvailabilty(@PathVariable String id, S) {
+//
+//    }
+
+
 
 
 }
